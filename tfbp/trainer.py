@@ -14,13 +14,14 @@ class Trainer:
   train_steps = 10000
   
   def __init__(self):
+    print 'Extracting data...'
     self.X_train, self.Y_train = dataset.train()
     self.X_val, self.Y_val = dataset.val()
     self.X_test, self.Y_test = dataset.test()
     
     self.model = Model()
     
-    inputs, output, loss_info = self.model.build_network()
+    inputs, output, loss_info = self.model.build_network(batch_size=self.batch_size)
     
     # self.x_image, self.x_words, self.y_words, self.y_past = inputs
     # self.output_words = output
@@ -28,6 +29,7 @@ class Trainer:
     self.loss, self.minimize_loss = loss_info
     
     # Create a new session and initialize globals
+    print 'Initializing session...'
     self.sess = tf.Session()
     self.sess.run(tf.global_variables_initializer())
     
@@ -36,6 +38,7 @@ class Trainer:
     
     # Restore prev model if exists
     if self.model.exists():
+      print 'Previous model found. Restoring...'
       self.saver.restore(self.sess, self.model.path)
     
     # Get stored global step value
@@ -66,7 +69,7 @@ class Trainer:
   
         if not self.global_step % self.print_every:
           loss = self.sess.run(self.loss, feed_dict)
-          print "Iteration {}: training loss = {}".format(i, loss)
+          print 'Iteration {}: training loss = {}'.format(i, loss)
   
         if not self.global_step % self.save_every:
           self.save_session()
@@ -84,6 +87,7 @@ class Trainer:
     self.saver.save(self.sess, self.model.path)
 
   def get_gstep(self):
+    # Create global_step.json if not there yet
     if not os.path.exists(global_step_path):
       self.set_gstep()
       return 0
