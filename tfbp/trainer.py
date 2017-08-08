@@ -66,7 +66,7 @@ class Trainer:
   
         if not self.global_step % self.print_every:
           loss = self.sess.run(self.loss, feed_dict)
-          print "Iteration {}: training loss = {}".format(self.global_step, loss)
+          print "Iteration {}: training loss = {}".format(i, loss)
   
         if not self.global_step % self.save_every:
           self.save_session()
