@@ -6,8 +6,6 @@ from tfbp.dl.blocks import conv_block, lstm_block
 
 class Model:
   path = model_path
-  image_size = [1250, 640, 3]
-  vocab_size = 50
   learning_rate = 0.0001
 
   def exists(self):

@@ -11,3 +11,5 @@ dataset_path = data_dir + '/dataset.hdf5'
 model_name = 'model.ckpt'
 model_dir = data_dir + '/model'
 model_path = '{}/{}'.format(model_dir, model_name)
+
+vocab_path = data_dir + '/vocab.json'
