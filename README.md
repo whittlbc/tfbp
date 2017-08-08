@@ -1,6 +1,6 @@
 # Tensorflow Boilerplate
 
-Boilerplate repo to use when starting a new Tensorflow project.
+Boilerplate repo for starting new Tensorflow projects
 
 ## License
 

@@ -10,13 +10,6 @@ class Model:
   vocab_size = 50
   learning_rate = 0.0001
   
-  def __init__(self):
-    self.loss = None
-    self.minimize_loss = None
-    
-    self.sess = None
-    self.saver = None
-    
   def exists(self):
     return os.path.exists(model_dir) and len([f for f in os.listdir(model_dir) if f.startswith(model_name)]) > 0
   
